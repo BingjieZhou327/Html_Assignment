@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Stopwatch with Session Logging</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Event Stopwatch</h1>
+        </header>
+
+        <main>
+            <section class="timer-section">
+                <div class="timer-display" id="timerDisplay">00:00:00</div>
+            </section>
+
+            <section class="event-details">
+                <div class="form-group">
+                    <label for="eventDate">Date:</label>
+                    <input type="date" id="eventDate" class="form-control">
+                    <div class="error-message" id="dateError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventName">Event Name:</label>
+                    <input type="text" id="eventName" class="form-control" placeholder="What are you timing?" maxlength="100">
+                    <div class="error-message" id="nameError"></div>
+                </div>
+            </section>
+
+            <section class="controls">
+                <button id="startBtn" class="btn btn-start">Start</button>
+                <button id="pauseBtn" class="btn btn-pause" disabled>Pause</button>
+                <button id="stopBtn" class="btn btn-stop" disabled>Stop & Save</button>
+                <button id="resetBtn" class="btn btn-reset" disabled>Reset</button>
+            </section>
+
+            <section class="statistics">
+                <h2>Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">Total Sessions</div>
+                        <div class="stat-value" id="totalSessions">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Total Time</div>
+                        <div class="stat-value" id="totalTime">00:00:00</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="history-section">
+                <div class="history-header">
+                    <h2>Session History</h2>
+                    <div class="filter-group">
+                        <label for="filterDate">Filter by Date:</label>
+                        <input type="date" id="filterDate" class="form-control">
+                        <button id="clearFilterBtn" class="btn btn-secondary">Clear Filter</button>
+                    </div>
+                </div>
+                <div id="historyList" class="history-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
