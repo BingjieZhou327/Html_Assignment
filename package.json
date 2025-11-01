@@ -1,0 +1,25 @@
+{
+  "name": "brew-haven-coffee-shop",
+  "version": "1.0.0",
+  "description": "A modern two-page coffee shop website demonstrating CSS Grid, Flexbox, and advanced SASS/SCSS features",
+  "main": "index.html",
+  "scripts": {
+    "sass": "sass scss/main.scss css/style.css",
+    "sass:watch": "sass --watch scss/main.scss:css/style.css",
+    "sass:build": "sass scss/main.scss css/style.css --style=compressed"
+  },
+  "keywords": [
+    "css-grid",
+    "flexbox",
+    "sass",
+    "scss",
+    "responsive-design",
+    "coffee-shop"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.69.5"
+  }
+}
+
