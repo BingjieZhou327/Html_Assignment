@@ -1,0 +1,77 @@
+// ============================================
+// About Section Component
+// ============================================
+
+.about {
+  @extend %section-padding;
+  background-color: $bg-light;
+  
+  &__container {
+    @extend %container;
+    // CSS Grid Layout #4
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+    align-items: center;
+    
+    @include respond-to(tablet) {
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+    }
+  }
+  
+  &__image {
+    width: 100%;
+    height: 500px;
+    border-radius: $border-radius;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    
+    img {
+      @extend %image-cover;
+    }
+    
+    @include respond-to(tablet) {
+      height: 300px;
+    }
+  }
+  
+  &__content {
+    h2 {
+      @extend %heading-style;
+      font-size: rem(42);
+      margin-bottom: $spacing-md;
+    }
+    
+    p {
+      @extend %paragraph-style;
+      font-size: rem(18);
+      margin-bottom: $spacing-md;
+      line-height: 1.8;
+    }
+    
+    ul {
+      margin-bottom: $spacing-lg;
+      
+      li {
+        @extend %paragraph-style;
+        padding-left: $spacing-md;
+        position: relative;
+        
+        &::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: $accent-color;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  
+  &__button {
+    @include button-style($primary-color, $text-light);
+    font-size: rem(16);
+  }
+}
+

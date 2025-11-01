@@ -1,0 +1,67 @@
+// ============================================
+// Hero Section Component
+// ============================================
+
+.hero {
+  position: relative;
+  height: 600px;
+  @include flex-center(column);
+  overflow: hidden;
+  
+  &__background {
+    @extend %image-cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: $z-index-base;
+  }
+  
+  &__overlay {
+    @extend %overlay;
+    z-index: $z-index-base + 1;
+  }
+  
+  &__content {
+    position: relative;
+    z-index: $z-index-base + 2;
+    text-align: center;
+    color: $text-light;
+    max-width: 800px;
+    padding: 0 $spacing-md;
+  }
+  
+  &__title {
+    @extend %heading-style;
+    color: $text-light;
+    font-size: responsive-size(36, 64);
+    margin-bottom: $spacing-md;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  &__subtitle {
+    @extend %paragraph-style;
+    color: $text-light;
+    font-size: rem(20);
+    margin-bottom: $spacing-lg;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  &__cta {
+    @include button-style($accent-color, $text-dark);
+    font-size: rem(18);
+    padding: $spacing-md $spacing-lg;
+  }
+  
+  @include respond-to(tablet) {
+    height: 400px;
+    
+    &__title {
+      font-size: rem(32);
+    }
+    
+    &__subtitle {
+      font-size: rem(16);
+    }
+  }
+}
+
