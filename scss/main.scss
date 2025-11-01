@@ -1,0 +1,31 @@
+// ============================================
+// Main SCSS File - Import Order
+// ============================================
+
+// 1. Base - Variables and Custom Properties
+@import 'base/variables';
+@import 'base/custom-properties';
+@import 'base/reset';
+
+// 2. Utilities - Functions, Mixins, Placeholders
+@import 'utilities/functions';
+@import 'utilities/mixins';
+@import 'utilities/placeholders';
+@import 'utilities/extends';
+@import 'utilities/loops';
+@import 'utilities/interpolation';
+@import 'utilities/conditionals';
+
+// 3. Layout - Major layout components
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/grid-section';
+
+// 4. Components - Reusable components
+@import 'components/hero';
+@import 'components/card';
+@import 'components/about';
+
+// 5. Themes - Animations and theme-specific styles
+@import 'themes/animations';
+
