@@ -1,0 +1,41 @@
+// ============================================
+// SASS Functions
+// ============================================
+
+// Calculate rem from pixels
+@function rem($pixels) {
+  @return #{$pixels / 16}rem;
+}
+
+// Calculate spacing multiplier
+@function spacing($multiplier) {
+  @return $spacing-sm * $multiplier;
+}
+
+// Lighten color by percentage
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+// Darken color by percentage
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// Get contrast color (black or white) based on background
+@function contrast-color($color) {
+  $lightness: lightness($color);
+  @if $lightness > 50% {
+    @return $text-dark;
+  } @else {
+    @return $text-light;
+  }
+}
+
+// Calculate responsive size
+@function responsive-size($min, $max, $viewport-min: 320, $viewport-max: 1200) {
+  $slope: ($max - $min) / ($viewport-max - $viewport-min);
+  $base: $min - $slope * $viewport-min;
+  @return calc(#{$base}px + #{$slope * 100}vw);
+}
+

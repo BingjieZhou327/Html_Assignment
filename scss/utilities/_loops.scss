@@ -1,0 +1,53 @@
+// ============================================
+// @each and @for Loops
+// ============================================
+
+// Generate spacing utility classes using @for
+@for $i from 1 through 5 {
+  .mt-#{$i} {
+    margin-top: spacing($i);
+  }
+  
+  .mb-#{$i} {
+    margin-bottom: spacing($i);
+  }
+  
+  .pt-#{$i} {
+    padding-top: spacing($i);
+  }
+  
+  .pb-#{$i} {
+    padding-bottom: spacing($i);
+  }
+}
+
+// Generate color classes using @each
+$colors: (
+  'primary': $primary-color,
+  'secondary': $secondary-color,
+  'accent': $accent-color,
+  'dark': $text-dark,
+  'light': $text-light
+);
+
+@each $name, $color in $colors {
+  .text-#{$name} {
+    color: $color;
+  }
+  
+  .bg-#{$name} {
+    background-color: $color;
+  }
+  
+  .border-#{$name} {
+    border-color: $color;
+  }
+}
+
+// Generate grid column classes
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    grid-column: span $i;
+  }
+}
+

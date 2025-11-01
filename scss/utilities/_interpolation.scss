@@ -1,0 +1,49 @@
+// ============================================
+// Interpolation Examples
+// ============================================
+
+// Dynamic class generation with interpolation
+$sides: top, right, bottom, left;
+
+@each $side in $sides {
+  .border-#{$side} {
+    border-#{$side}: 2px solid $primary-color;
+  }
+  
+  .rounded-#{$side} {
+    border-#{$side}-left-radius: $border-radius;
+    border-#{$side}-right-radius: $border-radius;
+  }
+}
+
+// Dynamic property generation
+@mixin position-absolute($top: null, $right: null, $bottom: null, $left: null) {
+  position: absolute;
+  
+  @if $top {
+    top: $top;
+  }
+  @if $right {
+    right: $right;
+  }
+  @if $bottom {
+    bottom: $bottom;
+  }
+  @if $left {
+    left: $left;
+  }
+}
+
+// Generate animation classes with interpolation
+$animations: (
+  'fade': 'fadeIn',
+  'slide': 'slideUp',
+  'zoom': 'zoomIn'
+);
+
+@each $name, $animation in $animations {
+  .animate-#{$name} {
+    animation: #{$animation} var(--transition-speed) ease;
+  }
+}
+

@@ -1,0 +1,47 @@
+// ============================================
+// @if/@else Conditionals
+// ============================================
+
+// Theme mixin with conditionals
+@mixin theme-colors($theme: 'light') {
+  @if $theme == 'light' {
+    background-color: $bg-light;
+    color: $text-dark;
+  } @else if $theme == 'dark' {
+    background-color: $bg-dark;
+    color: $text-light;
+  } @else {
+    background-color: white;
+    color: black;
+  }
+}
+
+// Size mixin with conditionals
+@mixin size($size) {
+  @if $size == 'small' {
+    font-size: rem(14);
+    padding: $spacing-xs $spacing-sm;
+  } @else if $size == 'medium' {
+    font-size: rem(16);
+    padding: $spacing-sm $spacing-md;
+  } @else if $size == 'large' {
+    font-size: rem(20);
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+// Responsive font size with conditionals
+@function get-font-size($level) {
+  @if $level == 'h1' {
+    @return rem(48);
+  } @else if $level == 'h2' {
+    @return rem(36);
+  } @else if $level == 'h3' {
+    @return rem(28);
+  } @else if $level == 'h4' {
+    @return rem(22);
+  } @else {
+    @return rem(16);
+  }
+}
+

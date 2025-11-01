@@ -1,0 +1,41 @@
+// ============================================
+// @extend Feature - Inheritance
+// ============================================
+
+// Base button class
+.btn-base {
+  display: inline-block;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius;
+  text-decoration: none;
+  font-family: $font-secondary;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  border: 2px solid transparent;
+}
+
+// Extended button variants
+.btn-primary {
+  @extend .btn-base;
+  background-color: $primary-color;
+  color: $text-light;
+  
+  &:hover {
+    background-color: shade($primary-color, 15%);
+  }
+}
+
+.btn-secondary {
+  @extend .btn-base;
+  background-color: transparent;
+  color: $primary-color;
+  border-color: $primary-color;
+  
+  &:hover {
+    background-color: $primary-color;
+    color: $text-light;
+  }
+}
+
