@@ -1,0 +1,66 @@
+// ============================================
+// Footer Layout - Grid
+// ============================================
+
+.footer {
+  background-color: $bg-dark;
+  color: $text-light;
+  padding: $spacing-xl 0 $spacing-md;
+  margin-top: $spacing-xl;
+  
+  &__container {
+    @extend %container;
+  }
+  
+  &__content {
+    // CSS Grid Layout #1
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
+    
+    @include respond-to(tablet) {
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+    }
+  }
+  
+  &__section {
+    h3 {
+      @extend %heading-style;
+      color: $text-light;
+      font-size: rem(20);
+      margin-bottom: $spacing-sm;
+    }
+    
+    p {
+      @extend %paragraph-style;
+      color: tint($text-dark, 70%);
+      line-height: 1.8;
+    }
+    
+    ul {
+      li {
+        margin-bottom: $spacing-xs;
+        
+        a {
+          color: tint($text-dark, 70%);
+          transition: color var(--transition-speed) ease;
+          
+          &:hover {
+            color: $accent-color;
+          }
+        }
+      }
+    }
+  }
+  
+  &__bottom {
+    text-align: center;
+    padding-top: $spacing-md;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: tint($text-dark, 70%);
+    font-size: rem(14);
+  }
+}
+
