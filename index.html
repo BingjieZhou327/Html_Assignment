@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew Haven - Artisan Coffee Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Header with Flexbox Layout -->
+    <header class="header">
+        <div class="header__container">
+            <div class="header__logo">
+                Brew<span>Haven</span>
+            </div>
+            <nav class="header__nav">
+                <a href="index.html" class="header__link header__link--active">Home</a>
+                <a href="menu.html" class="header__link">Menu</a>
+                <a href="#about" class="header__link">About</a>
+                <a href="#contact" class="header__link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="images/hero-coffee.jpg" alt="Coffee" class="hero__background">
+        <div class="hero__overlay"></div>
+        <div class="hero__content fade-in">
+            <h1 class="hero__title">Welcome to Brew Haven</h1>
+            <p class="hero__subtitle">Experience the finest artisan coffee crafted with passion and precision</p>
+            <a href="menu.html" class="hero__cta">Explore Our Menu</a>
+        </div>
+    </section>
+
+    <!-- Features Section with CSS Grid Layout #1 -->
+    <section class="features">
+        <div class="features__container">
+            <div class="features__header">
+                <h2>Why Choose Brew Haven</h2>
+                <p>Discover what makes our coffee exceptional</p>
+            </div>
+            <div class="features__grid">
+                <div class="features__item slide-up">
+                    <div class="features__item-icon"><i class="fas fa-mug-hot"></i></div>
+                    <h3 class="features__item-title">Premium Beans</h3>
+                    <p class="features__item-description">
+                        We source only the finest coffee beans from sustainable farms around the world, 
+                        ensuring every cup is rich and flavorful.
+                    </p>
+                </div>
+                <div class="features__item slide-up">
+                    <div class="features__item-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3 class="features__item-title">Expert Baristas</h3>
+                    <p class="features__item-description">
+                        Our skilled baristas are trained in the art of coffee making, bringing years of 
+                        experience to every brew.
+                    </p>
+                </div>
+                <div class="features__item slide-up">
+                    <div class="features__item-icon"><i class="fas fa-home"></i></div>
+                    <h3 class="features__item-title">Cozy Atmosphere</h3>
+                    <p class="features__item-description">
+                        Relax in our warm and inviting space, perfect for work, meetings, or catching 
+                        up with friends.
+                    </p>
+                </div>
+                <div class="features__item slide-up">
+                    <div class="features__item-icon"><i class="fas fa-leaf"></i></div>
+                    <h3 class="features__item-title">Sustainable</h3>
+                    <p class="features__item-description">
+                        We're committed to environmental responsibility with eco-friendly practices and 
+                        fair trade partnerships.
+                    </p>
+                </div>
+                <div class="features__item slide-up">
+                    <div class="features__item-icon"><i class="fas fa-bolt"></i></div>
+                    <h3 class="features__item-title">Fast Service</h3>
+                    <p class="features__item-description">
+                        Get your coffee fix quickly without compromising on quality. Perfect for busy 
+                        mornings on the go.
+                    </p>
+                </div>
+                <div class="features__item slide-up">
+                    <div class="features__item-icon"><i class="fas fa-palette"></i></div>
+                    <h3 class="features__item-title">Latte Art</h3>
+                    <p class="features__item-description">
+                        Every latte is a masterpiece. Our baristas create beautiful designs that make 
+                        your coffee Instagram-worthy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section with CSS Grid Layout #2 -->
+    <section class="about" id="about">
+        <div class="about__container">
+            <div class="about__image zoom-in">
+                <img src="images/about-coffee.jpg" alt="About Brew Haven">
+            </div>
+            <div class="about__content">
+                <h2>Our Story</h2>
+                <p>
+                    Founded in 2015, Brew Haven started with a simple mission: to bring exceptional 
+                    coffee experiences to our community. What began as a small neighborhood café has 
+                    grown into a beloved destination for coffee enthusiasts.
+                </p>
+                <p>
+                    We believe that great coffee is more than just a beverage—it's an experience. 
+                    From the moment you walk through our doors, you're greeted with the rich aroma 
+                    of freshly roasted beans and the warm smiles of our team.
+                </p>
+                <ul>
+                    <li>Locally roasted coffee beans</li>
+                    <li>Organic and fair trade certified</li>
+                    <li>Award-winning barista team</li>
+                    <li>Community-focused establishment</li>
+                </ul>
+                <a href="menu.html" class="about__button">View Our Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Items Section with CSS Grid Layout #3 -->
+    <section class="menu-grid">
+        <div class="menu-grid__container">
+            <div class="menu-grid__header">
+                <h2>Popular Favorites</h2>
+            </div>
+            <div class="menu-grid__items">
+                <div class="card card--popular">
+                    <div class="card__image">
+                        <img src="images/espresso.jpg" alt="Espresso">
+                    </div>
+                    <h3 class="card__title">Classic Espresso</h3>
+                    <p class="card__description">
+                        Rich and bold, our signature espresso is the perfect way to start your day. 
+                        Made with premium Arabica beans.
+                    </p>
+                    <div class="card__price">$3.50</div>
+                    <button class="card__button">Order Now</button>
+                </div>
+                <div class="card card--popular">
+                    <div class="card__image">
+                        <img src="images/latte.jpg" alt="Latte">
+                    </div>
+                    <h3 class="card__title">Caramel Latte</h3>
+                    <p class="card__description">
+                        Smooth espresso combined with steamed milk and sweet caramel syrup, topped 
+                        with beautiful latte art.
+                    </p>
+                    <div class="card__price">$5.50</div>
+                    <button class="card__button">Order Now</button>
+                </div>
+                <div class="card card--popular">
+                    <div class="card__image">
+                        <img src="images/cappuccino.jpg" alt="Cappuccino">
+                    </div>
+                    <h3 class="card__title">Cappuccino</h3>
+                    <p class="card__description">
+                        The perfect balance of espresso, steamed milk, and velvety foam. A timeless 
+                        classic that never disappoints.
+                    </p>
+                    <div class="card__price">$4.50</div>
+                    <button class="card__button">Order Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with CSS Grid Layout #4 -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h3>About Us</h3>
+                    <p>
+                        Brew Haven is your neighborhood coffee shop dedicated to serving exceptional 
+                        coffee in a warm and welcoming environment.
+                    </p>
+                </div>
+                <div class="footer__section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Coffee Street</li>
+                        <li><i class="fas fa-city"></i> Seattle, WA 98101</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> hello@brewhaven.com</li>
+                    </ul>
+                    <div style="margin-top: 20px; font-size: 24px;">
+                        <a href="#" style="color: #8B4513; margin-right: 15px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: #8B4513; margin-right: 15px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: #8B4513; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: #8B4513;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 Brew Haven. All rights reserved. <i class="fas fa-heart" style="color: #D2691E;"></i> Made BY BingJieZhou</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
