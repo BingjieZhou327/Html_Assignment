@@ -1,0 +1,32 @@
+// ============================================
+// CSS Custom Properties
+// ============================================
+
+:root {
+  // Colors (can be changed dynamically with JavaScript)
+  --color-primary: #{$primary-color};
+  --color-secondary: #{$secondary-color};
+  --color-accent: #{$accent-color};
+  --color-text-dark: #{$text-dark};
+  --color-text-light: #{$text-light};
+  --color-bg-light: #{$bg-light};
+  --color-bg-dark: #{$bg-dark};
+  
+  // Spacing
+  --spacing-unit: #{$spacing-sm};
+  --spacing-double: calc(var(--spacing-unit) * 2);
+  --spacing-triple: calc(var(--spacing-unit) * 3);
+  
+  // Typography
+  --font-primary: #{$font-primary};
+  --font-secondary: #{$font-secondary};
+  
+  // Animation
+  --transition-speed: #{$transition-speed};
+  
+  // Shadows
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+

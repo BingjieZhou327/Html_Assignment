@@ -1,0 +1,43 @@
+// ============================================
+// SASS Variables
+// ============================================
+
+// Color Variables
+$primary-color: #6f4e37;
+$secondary-color: #a0826d;
+$accent-color: #d4a574;
+$text-dark: #2c2c2c;
+$text-light: #ffffff;
+$bg-light: #f8f5f2;
+$bg-dark: #3e2723;
+
+// Typography Variables
+$font-primary: 'Playfair Display', serif;
+$font-secondary: 'Lato', sans-serif;
+$font-size-base: 16px;
+$font-size-large: 24px;
+$font-size-xlarge: 48px;
+
+// Spacing Variables
+$spacing-xs: 8px;
+$spacing-sm: 16px;
+$spacing-md: 24px;
+$spacing-lg: 48px;
+$spacing-xl: 72px;
+
+// Layout Variables
+$max-width: 1200px;
+$border-radius: 8px;
+$transition-speed: 0.3s;
+
+// Breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+// Z-index layers
+$z-index-base: 1;
+$z-index-dropdown: 100;
+$z-index-modal: 1000;
+$z-index-overlay: 2000;
+
