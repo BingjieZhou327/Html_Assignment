@@ -1,0 +1,592 @@
+{
+  "info": {
+    "name": "User Management API Tests",
+    "description": "Complete test collection for User Management API with all CRUD operations and image upload",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create User - Success",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has success message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"User created successfully.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"Password123!\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/create",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "create"]
+        },
+        "description": "Creates a new user with valid credentials"
+      },
+      "response": []
+    },
+    {
+      "name": "2. Create User - Invalid Email",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Response has error message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.error).to.exist;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Jane Smith\",\n  \"email\": \"invalid-email\",\n  \"password\": \"Password123!\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/create",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "create"]
+        },
+        "description": "Attempts to create user with invalid email format"
+      },
+      "response": []
+    },
+    {
+      "name": "3. Create User - Invalid Full Name",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Response has validation error\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.error).to.eql(\"Validation failed.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"John123\",\n  \"email\": \"john123@example.com\",\n  \"password\": \"Password123!\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/create",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "create"]
+        },
+        "description": "Attempts to create user with invalid full name (contains numbers)"
+      },
+      "response": []
+    },
+    {
+      "name": "4. Create User - Weak Password",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Response has validation error\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.error).to.eql(\"Validation failed.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Alice Brown\",\n  \"email\": \"alice.brown@example.com\",\n  \"password\": \"weak\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/create",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "create"]
+        },
+        "description": "Attempts to create user with weak password"
+      },
+      "response": []
+    },
+    {
+      "name": "5. Create Another User - Success",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has success message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"User created successfully.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Sarah Wilson\",\n  \"email\": \"sarah.wilson@example.com\",\n  \"password\": \"SecurePass456#\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/create",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "create"]
+        },
+        "description": "Creates another user for testing"
+      },
+      "response": []
+    },
+    {
+      "name": "6. Get All Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has users array\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.users).to.be.an('array');",
+              "    pm.expect(jsonData.users.length).to.be.at.least(1);",
+              "});",
+              "",
+              "pm.test(\"Users have required fields\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    jsonData.users.forEach(function(user) {",
+              "        pm.expect(user).to.have.property('fullName');",
+              "        pm.expect(user).to.have.property('email');",
+              "        pm.expect(user).to.have.property('password');",
+              "    });",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/user/getAll",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "getAll"]
+        },
+        "description": "Retrieves all users from the database"
+      },
+      "response": []
+    },
+    {
+      "name": "7. Update User - Success",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has success message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"User updated successfully.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"fullName\": \"John Updated Doe\",\n  \"password\": \"NewPassword456!\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/edit",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "edit"]
+        },
+        "description": "Updates user's full name and password"
+      },
+      "response": []
+    },
+    {
+      "name": "8. Update User - User Not Found",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Response has error message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.error).to.eql(\"User not found.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"nonexistent@example.com\",\n  \"fullName\": \"Test User\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/edit",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "edit"]
+        },
+        "description": "Attempts to update a non-existent user"
+      },
+      "response": []
+    },
+    {
+      "name": "9. Upload Image - Success",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has success message and filePath\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Image uploaded successfully.\");",
+              "    pm.expect(jsonData.filePath).to.exist;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "john.doe@example.com",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "src": [],
+              "description": "Select a JPEG, PNG, or GIF image file"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/uploadImage",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "uploadImage"]
+        },
+        "description": "Uploads an image for the user. Please select an image file (JPEG, PNG, or GIF) before running this test."
+      },
+      "response": []
+    },
+    {
+      "name": "10. Upload Image - Duplicate",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Response has error message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.error).to.eql(\"Image already exists for this user.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "john.doe@example.com",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "src": [],
+              "description": "Select any image file"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/uploadImage",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "uploadImage"]
+        },
+        "description": "Attempts to upload a second image for the same user (should fail)"
+      },
+      "response": []
+    },
+    {
+      "name": "11. Upload Image - User Not Found",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Response has error message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.error).to.eql(\"User not found.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "nonexistent@example.com",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "src": [],
+              "description": "Select any image file"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/uploadImage",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "uploadImage"]
+        },
+        "description": "Attempts to upload image for non-existent user"
+      },
+      "response": []
+    },
+    {
+      "name": "12. Delete User - Success",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has success message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"User deleted successfully.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"sarah.wilson@example.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/delete",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "delete"]
+        },
+        "description": "Deletes a user from the database"
+      },
+      "response": []
+    },
+    {
+      "name": "13. Delete User - User Not Found",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Response has error message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.error).to.eql(\"User not found.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"nonexistent@example.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/delete",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user", "delete"]
+        },
+        "description": "Attempts to delete a non-existent user"
+      },
+      "response": []
+    }
+  ]
+}
+
