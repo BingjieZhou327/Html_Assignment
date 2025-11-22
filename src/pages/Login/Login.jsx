@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Container,
   Box,
@@ -11,40 +12,47 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { LockOutlined as LockIcon } from '@mui/icons-material';
-import { login, setSession, isAuthenticated } from '../../services/api';
+import { loginUser, loadAuthFromStorage } from '../../redux/slices/authSlice';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
+  const { loading, error, isAuthenticated, userType } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (isAuthenticated()) {
-      navigate('/home');
+    // Load auth from storage on mount
+    dispatch(loadAuthFromStorage());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isAuthenticated && userType) {
+      // Redirect based on user type
+      if (userType === 'admin') {
+        navigate('/admin/employees');
+      } else if (userType === 'employee') {
+        navigate('/home');
+      }
     }
-  }, [navigate]);
+  }, [isAuthenticated, userType, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setLoading(true);
 
     try {
-      const response = await login(username, password);
+      const result = await dispatch(loginUser({ username, password })).unwrap();
       
-      // Store session data
-      setSession(response.token || 'dummy-token', {
-        username: response.username || username,
-      });
-
-      // Redirect to home page
-      navigate('/home');
+      // Redirect based on user type
+      if (result.type === 'admin') {
+        navigate('/admin/employees');
+      } else if (result.type === 'employee') {
+        navigate('/home');
+      }
     } catch (err) {
-      setError(err.message || 'Invalid username or password');
-    } finally {
-      setLoading(false);
+      // Error is handled by Redux
+      console.error('Login failed:', err);
     }
   };
 
@@ -90,7 +98,7 @@ const Login = () => {
           </Typography>
           {error && (
             <Alert severity="error" sx={{ width: '100%', mb: 2 }}>
-              {error}
+              {typeof error === 'string' ? error : 'Invalid username or password'}
             </Alert>
           )}
           <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
