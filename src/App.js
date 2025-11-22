@@ -6,15 +6,20 @@ import { Box } from '@mui/material';
 
 // Components
 import Navbar from './components/Navbar/Navbar';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import RoleBasedRoute from './components/RoleBasedRoute/RoleBasedRoute';
 
-// Pages
+// Pages - Employee
 import Login from './pages/Login/Login';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import JobListings from './pages/JobListings/JobListings';
 import Contact from './pages/Contact/Contact';
 import CompanyShowcase from './pages/CompanyShowcase/CompanyShowcase';
+
+// Pages - Admin
+import Employees from './pages/Admin/Employees';
+import AddJob from './pages/Admin/AddJob';
+import AdminJobs from './pages/Admin/AdminJobs';
 
 import './App.css';
 
@@ -68,47 +73,78 @@ function App() {
         <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default' }}>
           <Navbar />
           <Routes>
+            {/* Public Routes */}
             <Route path="/login" element={<Login />} />
+
+            {/* Admin Routes */}
+            <Route
+              path="/admin/employees"
+              element={
+                <RoleBasedRoute allowedRoles={['admin']}>
+                  <Employees />
+                </RoleBasedRoute>
+              }
+            />
+            <Route
+              path="/admin/jobs"
+              element={
+                <RoleBasedRoute allowedRoles={['admin']}>
+                  <AdminJobs />
+                </RoleBasedRoute>
+              }
+            />
+            <Route
+              path="/admin/add-job"
+              element={
+                <RoleBasedRoute allowedRoles={['admin']}>
+                  <AddJob />
+                </RoleBasedRoute>
+              }
+            />
+
+            {/* Employee Routes */}
             <Route
               path="/home"
               element={
-                <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['employee']}>
                   <Home />
-                </ProtectedRoute>
+                </RoleBasedRoute>
               }
             />
             <Route
               path="/about"
               element={
-                <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['employee']}>
                   <About />
-                </ProtectedRoute>
+                </RoleBasedRoute>
               }
             />
             <Route
               path="/jobs"
               element={
-                <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['employee']}>
                   <JobListings />
-                </ProtectedRoute>
+                </RoleBasedRoute>
               }
             />
             <Route
               path="/contact"
               element={
-                <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['employee']}>
                   <Contact />
-                </ProtectedRoute>
+                </RoleBasedRoute>
               }
             />
             <Route
               path="/companies"
               element={
-                <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['employee']}>
                   <CompanyShowcase />
-                </ProtectedRoute>
+                </RoleBasedRoute>
               }
             />
+
+            {/* Default Routes */}
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
