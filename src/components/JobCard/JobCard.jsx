@@ -9,11 +9,17 @@ import {
   Chip,
 } from '@mui/material';
 import {
-  AccessTime as AccessTimeIcon,
+  Business as BusinessIcon,
+  AttachMoney as MoneyIcon,
   OpenInNew as OpenInNewIcon,
 } from '@mui/icons-material';
 
 const JobCard = ({ job }) => {
+  const title = job.jobTitle || job.title || 'Untitled Position';
+  const company = job.companyName || job.company || 'Company';
+  const description = job.description || 'No description available';
+  const salary = job.salary || null;
+
   return (
     <Card
       sx={{
@@ -29,29 +35,40 @@ const JobCard = ({ job }) => {
     >
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography variant="h5" component="h2" gutterBottom color="primary">
-          {job.title}
+          {title}
         </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+          <BusinessIcon sx={{ fontSize: 18, mr: 1, color: 'text.secondary' }} />
+          <Typography variant="subtitle2" color="text.secondary">
+            {company}
+          </Typography>
+        </Box>
         <Typography
           variant="body2"
           color="text.secondary"
           paragraph
           sx={{ minHeight: '80px' }}
         >
-          {job.description}
+          {description.length > 150 ? `${description.substring(0, 150)}...` : description}
         </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-          <AccessTimeIcon sx={{ fontSize: 16, mr: 0.5, color: 'text.secondary' }} />
-          <Typography variant="caption" color="text.secondary">
-            {job.lastUpdated}
-          </Typography>
-        </Box>
+        {salary && (
+          <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+            <Chip
+              icon={<MoneyIcon />}
+              label={`$${salary.toLocaleString()}`}
+              color="success"
+              size="small"
+              sx={{ fontWeight: 'bold' }}
+            />
+          </Box>
+        )}
       </CardContent>
       <CardActions sx={{ p: 2, pt: 0 }}>
         <Button
           size="small"
           variant="contained"
           endIcon={<OpenInNewIcon />}
-          href={job.applyLink}
+          href={job.applyLink || '#'}
           target="_blank"
           rel="noopener noreferrer"
           fullWidth

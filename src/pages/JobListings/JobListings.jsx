@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Container,
   Typography,
@@ -6,19 +7,55 @@ import {
   Grid,
   TextField,
   InputAdornment,
+  CircularProgress,
+  Alert,
 } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
 import JobCard from '../../components/JobCard/JobCard';
-import jobPosts from '../../data/jobPosts';
+import { getAllJobs } from '../../redux/slices/jobsSlice';
 
 const JobListings = () => {
+  const dispatch = useDispatch();
+  const { jobsList, loading, error } = useSelector((state) => state.jobs);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredJobs = jobPosts.filter(
+  useEffect(() => {
+    dispatch(getAllJobs());
+  }, [dispatch]);
+
+  const filteredJobs = jobsList.filter(
     (job) =>
-      job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.description.toLowerCase().includes(searchTerm.toLowerCase())
+      (job.jobTitle || job.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (job.description || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (job.companyName || job.company || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if (loading) {
+    return (
+      <Container maxWidth="lg">
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '60vh',
+          }}
+        >
+          <CircularProgress size={60} />
+        </Box>
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container maxWidth="lg">
+        <Box sx={{ mt: 4 }}>
+          <Alert severity="error">{error}</Alert>
+        </Box>
+      </Container>
+    );
+  }
 
   return (
     <Container maxWidth="lg">
@@ -37,7 +74,7 @@ const JobListings = () => {
         <TextField
           fullWidth
           variant="outlined"
-          placeholder="Search jobs by title or description..."
+          placeholder="Search jobs by title, description, or company..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           InputProps={{
@@ -53,7 +90,7 @@ const JobListings = () => {
 
       <Box sx={{ mb: 3 }}>
         <Typography variant="body1" color="text.secondary">
-          Showing {filteredJobs.length} of {jobPosts.length} jobs
+          Showing {filteredJobs.length} of {jobsList.length} jobs
         </Typography>
       </Box>
 
